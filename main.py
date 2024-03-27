@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 class MyHTMLParser(HTMLParser):
 
     def __init__(self):
-       self.rawdata = ""
+       super().__init__()
        self.notes_content = False
 
 
@@ -21,6 +21,7 @@ class MyHTMLParser(HTMLParser):
     def handle_endtag(self, tag):
         if tag == "div" and self.notes_content == True:
             print("Encountered an end tag :", tag)
+            self.notes_content = False
 
     # def handle_data(self, data):
     #     print("Encountered some data  :", data)
