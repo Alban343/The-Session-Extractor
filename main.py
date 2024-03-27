@@ -5,6 +5,7 @@ from html.parser import HTMLParser
 # La classe qui va trier l'HTML importé
 class MyHTMLParser(HTMLParser):
 
+# Fonction qui
     def __init__(self):
        super().__init__()
        self.notes_content = False
@@ -23,8 +24,9 @@ class MyHTMLParser(HTMLParser):
             print("Encountered an end tag :", tag)
             self.notes_content = False
 
-    # def handle_data(self, data):
-    #     print("Encountered some data  :", data)
+    def handle_data(self, data):
+        if self.notes_content == True:
+            print("Encountered some data  :", data)
 
 # Fonction principale
 def main():
