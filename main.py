@@ -4,14 +4,22 @@ from html.parser import HTMLParser
 
 # La classe qui va trier l'HTML importé
 class MyHTMLParser(HTMLParser):
-    def handle_starttag(self, tag, attrs):
-        if tag == "div":
-            print("Encountered a start tag:", tag, attrs)
-            
-        # if attrs
 
+    def __init__(self):
+       self.rawdata = ""
+       self.notes_content = False
+
+
+    def handle_starttag(self, tag, attrs):
+
+        for attribut in attrs:
+            if attribut[0] == 'class' and attribut[1] == 'notes':
+                self.notes_content = True
+                print(tag)
+            
+    
     def handle_endtag(self, tag):
-        if tag == "div":
+        if tag == "div" and self.notes_content == True:
             print("Encountered an end tag :", tag)
 
     # def handle_data(self, data):
@@ -19,7 +27,6 @@ class MyHTMLParser(HTMLParser):
 
 # Fonction principale
 def main():
-    print('tttttt')
     try:
         # Appel des données
         test = requests.get("https://thesession.org/tunes/1")
