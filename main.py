@@ -29,7 +29,7 @@ class MyHTMLParser(HTMLParser):
         if self.notes_content == True:
             print(data)
 
-# Fonction principale
+# Fonction principale puis balayage du site
 def main():
     n = 0
     previous_url = None
